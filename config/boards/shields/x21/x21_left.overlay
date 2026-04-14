@@ -5,6 +5,7 @@
     chosen {
         zmk,kscan = &kscan0;
         zmk,matrix_transform = &x21_left_transform;
+        zmk,split-role = "central";
     };
 
     kscan0: kscan {
