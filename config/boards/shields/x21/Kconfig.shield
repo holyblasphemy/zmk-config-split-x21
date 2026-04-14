@@ -1,0 +1,7 @@
+config SHIELD_X21_LEFT
+    def_bool y
+    select ZMK_KEYBOARD_NAME
+
+config SHIELD_X21_RIGHT
+    def_bool y
+    select ZMK_KEYBOARD_NAME
