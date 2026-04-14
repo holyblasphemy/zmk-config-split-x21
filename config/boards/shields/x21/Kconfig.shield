@@ -1,11 +1,5 @@
-if SHIELD_X21_LEFT
-config ZMK_KEYBOARD_NAME
-    default "X21"
-config ZMK_SPLIT_ROLE_CENTRAL
-    default y
-endif
+config SHIELD_X21_LEFT
+    def_bool $(shields_list_contains,x21_left)
 
-if SHIELD_X21_LEFT || SHIELD_X21_RIGHT
-config ZMK_SPLIT
-    default y
-endif
+config SHIELD_X21_RIGHT
+    def_bool $(shields_list_contains,x21_right)
