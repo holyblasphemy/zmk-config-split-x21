@@ -1,9 +1,13 @@
 if SHIELD_X21_LEFT
+
 config ZMK_KEYBOARD_NAME
     default "X21 Left"
+
 endif
 
 if SHIELD_X21_RIGHT
+
 config ZMK_KEYBOARD_NAME
     default "X21 Right"
+
 endif
