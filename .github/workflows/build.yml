@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Cache west modules
         uses: actions/cache@v4
         env:
@@ -22,40 +23,47 @@ jobs:
             zephyr/
             bootloader/
             zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('manifest-dir/west.yml') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
       - name: West Init
         run: west init -l config
+
       - name: West Update
         run: west update
+
       - name: West Zephyr export
         run: west zephyr-export
+
       - name: West Build (X21 Left)
         run: west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=x21_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: KEYBOARD_TITLE DTS File
-        if: ${{ always() }}
-        run: cat -n build/zephyr/BOARD_NAME.dts.pre.tmp
-      - name: KEYBOARD_TITLE Left Kconfig file
+
+      - name: X21 Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 SHIELD_NAME_left_BOARD_NAME.uf2
-      - name: Archive (KEYBOARD_TITLE Left)
+
+      - name: Rename left zmk.uf2
+        run: cp build/zephyr/zmk.uf2 x21_left_nice_nano_v2.uf2
+
+      - name: Archive (X21 Left)
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
-          path: SHIELD_NAME_left_BOARD_NAME.uf2
+          name: firmware-left
+          path: x21_left_nice_nano_v2.uf2
+
       - name: West Build (X21 Right)
         run: west build --pristine -s zmk/app -b nice_nano_v2 -- -DSHIELD=x21_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
-      - name: KEYBOARD_TITLE Right Kconfig file
+      - name: X21 Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 SHIELD_NAME_right_BOARD_NAME.uf2
-      - name: Archive (KEYBOARD_TITLE Right)
+
+      - name: Rename right zmk.uf2
+        run: cp build/zephyr/zmk.uf2 x21_right_nice_nano_v2.uf2
+
+      - name: Archive (X21 Right)
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
-          path: SHIELD_NAME_right_BOARD_NAME.uf2
+          name: firmware-right
+          path: x21_right_nice_nano_v2.uf2
