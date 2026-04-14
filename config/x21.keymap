@@ -7,13 +7,6 @@
 
         default_layer {
             bindings = <
-                // Левая половина
-                &kp ESC    &kp Q      &kp W      &kp E      &kp R      &kp T
-                &kp GRAVE  &kp A      &kp S      &kp D      &kp F      &kp G
-                &kp PG_DN  &kp Z      &kp X      &kp C      &kp V      &kp B
-                                           &kp LSHIFT &kp SPACE &kp ENTER
-
-                // Правая половина
                 &kp Y      &kp U      &kp I      &kp O      &kp P      &kp LBKT
                 &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp SQT
                 &kp N      &kp M      &kp COMMA  &kp DOT    &kp SLASH  &kp RBKT
