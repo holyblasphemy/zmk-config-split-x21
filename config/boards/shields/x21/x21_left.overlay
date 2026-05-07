@@ -7,7 +7,7 @@
         zmk,kscan = &kscan0;
         zmk,matrix_transform = &x21_left_transform;
         zmk,split-role = "central";
-        zmk,display = &oled;
+        zephyr,display = &oled;
     };
 
     kscan0: kscan {
