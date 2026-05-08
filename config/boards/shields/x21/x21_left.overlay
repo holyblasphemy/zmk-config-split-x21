@@ -74,7 +74,7 @@
 
         segment-offset = <0>;
         page-offset = <0>;
-        display-offset = <0>;
+        display-offset = <32>;
         multiplex-ratio = <31>;
 
         segment-remap;
