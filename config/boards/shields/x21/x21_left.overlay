@@ -76,7 +76,7 @@
         width = <128>;
         height = <32>;
 
-        segment-offset = <4>;
+        segment-offset = <32>;
         page-offset = <0>;
         display-offset = <0>;
         multiplex-ratio = <31>;
